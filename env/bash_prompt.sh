@@ -1,8 +1,8 @@
-# shows current git branch in brackets and its status 
+# shows current git branch in brackets colour coded by its status 
 
 BLUE="\[\033[1;34m\]" # nothing to commit
-RED="\[\033[1;31m\]" # changes to commit
-PURPLE="\[\033[1;35m\]" # unstaged changes
+PURPLE="\[\033[1;35m\]" # changes to commit or unstaged
+RED="\[\033[1;31m\]" # new, untracked files
 COLOR_NONE="\[\e[0m\]"
 
 function is_git_repository {
@@ -63,7 +63,7 @@ function set_bash_prompt () {
   else
     BRANCH=' '
   fi
-  # alter the following line to change prompt
+  # alter the \W following to change prompt
   PS1="${BLUE}\W${COLOR_NONE}${BRANCH}${PROMPT_SYMBOL} "
 }
 
