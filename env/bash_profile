@@ -1,0 +1,20 @@
+alias st='git sourcetree'
+alias gst='git status'
+alias gsh='git push origin'
+alias gll='git pull origin'
+alias gch='git checkout'
+alias rebash='~/.bash_profile'
+
+. ~/.bashrc
+. $env/bash_prompt.sh
+# from /etc/bashrc
+shopt -s checkwinsize
+if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
+  update_terminal_cwd() {
+    local SEARCH=' '
+    local REPLACE='%20'
+    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+    printf '\e]7;%s\a' "$PWD_URL"
+  }
+  PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+fi
