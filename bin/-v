@@ -31,7 +31,7 @@ def putv(app, cmd=nil, line=0, word=-1, word2=nil)
     version = "[[#{parts[0]}]]-p#{parts[1]}" if parts.size == 2
   end
   segments = app.split("|")
-  app = segments.size < 2 ? segments[-1] : segments[1]
+  app = segments[1 - segments.size]
   app += "|MacOSX" if wikiized && app == "OSX"
   app = "[[#{app}]]" if wikiized
   puts "#{app}: #{version}"
