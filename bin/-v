@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+def version(app, cmd, line, word, word2)
+  string = if cmd
+    lines = `#{cmd} 2>&1`.split($/)
+    return "NA" if lines[0] =~ / not /
+    lines[line]
+  else
+    plist = File.read("/Applications/#{app}.app/Contents/Info.plist")
+    if plist[0] == "{" || plist[0] == 123 # 1.8.7
+      plist.split("CFBundleShortVersionString")[1].split('"')[1]
+    else
+      values = plist.split("<").map{|s| s.split(">")[1]}.to_enum
+      until values.next == "CFBundleShortVersionString" do end
+      values.next
+      values.next
+    end
+  end
+  words = [word]
+  words.push word2 if word2
+  words.map { |word| string.split[word].gsub /(v|"|\(\d\)-release|\(|\)|,)/, "" }.join "-p"
+rescue
+  "NA"
+end
+
+def putv(app, cmd=nil, line=0, word=-1, word2=nil)
+  version = version(app.gsub("|",""), cmd, line, word, word2)
+  wikiized = ARGV[0] == "w"
+  if wikiized && app == "Ruby" then
+    parts = version.split("-p")
+    version = "[[#{parts[0]}]]-p#{parts[1]}" if parts.size == 2
+  end
+  segments = app.split("|")
+  app = segments.size < 2 ? segments[-1] : segments[1]
+  app += "|MacOSX" if wikiized && app == "OSX"
+  app = "[[#{app}]]" if wikiized
+  puts "#{app}: #{version}"
+end
+
+putv "OSX", "sw_vers", 1
+putv "Xcode", "xcodebuild -version"
+putv "GCC", "gcc --version", 0, 2
+putv "Bash", "bash -c 'echo $BASH_VERSION'"
+putv "Ruby", "ruby -v", 0, 1, 4
+putv "Homebrew", "brew -v"
+putv "Git", "git --version"
+putv "MongoDB", "mongo --eval 'db.version()'", 2
+putv "Node", "node -v"
+putv "Npm", "npm -v"
+putv "CoffeeScript", "coffee -v"
+putv "SourceTree"
+putv "TextMate"
+putv "|Sublime Text| 2", nil, 0, 1
+putv "Java", "java -version"
+putv "Python", "python -V"
+putv "Google |Chrome"
+putv "Firefox"
+putv "Safari"
+puts `brew --config` if ARGV[0] == "h"
