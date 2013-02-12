@@ -6,7 +6,7 @@ Open a new Terminal and run
 
     -v
     
-Output on my MacBook Pro Retina is
+Output on my MacBook Pro Retina on 12th Feb 2013 is
 
     OSX: 10.8.2
     Xcode: 4.6
@@ -19,7 +19,7 @@ Output on my MacBook Pro Retina is
     Node: 0.8.19
     Npm: 1.2.10
     CoffeeScript: 1.4.0
-    SourceTree: 1.5.6
+    SourceTree: 1.5.7.1
     TextMate: 1.5.11
     Sublime Text: 2.0.1
     Java: 1.6.0_37
