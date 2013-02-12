@@ -28,4 +28,24 @@ Output on my MacBook Pro Retina is
     Firefox: 18.0.2
     Safari: 6.0.2
 
-See [Mac OS X Setup](https://github.com/Bizzby/bizzby/wiki/Mac-OS-X-Setup) for how to get here from a new machine
+See [Mac OS X Setup](https://github.com/Bizzby/bizzby/wiki/Mac-OS-X-Setup) for how to get here from a new Mac.
+
+In the env directory there's an example of how to set up ~/.bash_profile and ~/.bashrc to give helpful, coloured prompts in the Mac Terminal, showing the current directory, current Git branch, whether there are outstanding changes to commit and whether there are commits to push to or pull from GitHub (or any other remote repository). Copy the relevant lines into your own existing startup files. 
+
+One is taught that .bashrc is for general environment variables for any process forked from Bash, .bash_profile for terminal-related stuff, including aliases. I've given some examples of aliases I use with Git but these are very much a matter of taste. Copy anything you fancy but the following lines are essential to get the fancy prompt working without breaking Terminal's nice habit of taking you to the same directory as current on hitting apple-tab
+
+    . ~/.bashrc
+    . $env/bash_prompt.sh
+    # from /etc/bashrc
+    shopt -s checkwinsize
+    if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
+      update_terminal_cwd() {
+        local SEARCH=' '
+        local REPLACE='%20'
+        local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+        printf '\e]7;%s\a' "$PWD_URL"
+      }
+      PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+    fi
+
+Feedback appreciated and essential :)

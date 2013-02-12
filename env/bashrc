@@ -1,7 +1,7 @@
 # copy relevant lines to ~/.bashrc
 
-export dev=~/dev
-export scripts=$dev/scripts
+export dev=~/dev # wherever you cloned this repo
+export scripts=$dev/scripts # the repo itself
 export env=$scripts/env
 export PATH=$scripts/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=./node_modules/.bin:/usr/local/share/npm/bin:$PATH
