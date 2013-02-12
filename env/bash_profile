@@ -1,3 +1,5 @@
+# copy relevant lines to ~/.bash_profile
+
 alias st='git sourcetree'
 alias gst='git status'
 alias gsh='git push origin'
