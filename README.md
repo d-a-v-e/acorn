@@ -48,4 +48,4 @@ One is told that .bashrc is for general environment variables for any process fo
       PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
     fi
 
-Feedback appreciated and essential :)
+Feedback appreciated and essential
