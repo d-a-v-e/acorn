@@ -1,34 +1,41 @@
 Clone under ~/dev and add the following line to your ~./bashrc or ~/.bash_profile
 
-    export PATH=~/dev/scripts/bin:$PATH
+    export PATH=~/dev/acorn/bin:$PATH
     
 Open a new Terminal and run
 
     -v
     
-Output on my MacBook Pro Retina on 12th Feb 2013 is
+Output on my MacBook Pro on 18th Feb 2014 is
 
-    OSX: 10.8.2
-    Xcode: 4.6
+    OSX: 10.9.1
+    Bash: 4.2.45
+    Xcode: 5.0.2
     GCC: 4.2.1
-    Bash: 3.2.48
-    Ruby: 1.8.7-p358
-    Homebrew: 0.9.4
-    Git: 1.8.1.3
-    MongoDB: 2.2.3
-    Node: 0.8.19
-    Npm: 1.2.10
+    Homebrew: 0.9.5
+    Apache: 2.2.24
+    Safari: 7.0.1
+    Chrome: 33.0.1750.70
+    Firefox: 27.0.1
+    SQLite: 3.7.13
+    MySQL: 14.14
+    Postgres: 9.3.2
+    pgAdmin3: 1.18
+    Git: 1.8.5.5
+    SourceTree: 1.8.1
+    DeltaWalker: 1.9.9.5
+    TextMate: 2.0-alpha.9503
+    Java: 1.7.0_25
+    Python: 2.7.6
+    Node: 0.10.25
+    Npm: 1.3.24
     CoffeeScript: 1.4.0
-    SourceTree: 1.5.7.1
-    TextMate: 1.5.11
-    Sublime Text: 2.0.1
-    Java: 1.6.0_37
-    Python: 2.7.2
-    Chrome: 24.0.1312.57
-    Firefox: 18.0.2
-    Safari: 6.0.2
-
-See [Mac OS X Setup](https://github.com/Bizzby/bizzby/wiki/Mac-OS-X-Setup) for how to get here from a new Mac.
+    Rbenv: 0.4.0
+    Ruby: 2.1.0p0
+    Rails: 4.0.2
+    Gem: 2.2.1
+    Bundler: 1.5.2
+    Pry: 0.9.12.6
 
 In the env directory there's an example of how to set up ~/.bash_profile and ~/.bashrc to give helpful, coloured prompts in the Mac Terminal, showing the current directory, current Git branch, whether there are outstanding changes to commit and whether there are commits to push to or pull from GitHub (or any other remote repository). Copy the relevant lines into your existing startup files. 
 
