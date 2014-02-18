@@ -1,13 +1,15 @@
 #!/usr/bin/env ruby
 
-def version(app, cmd, line, word, word2)
-  string = if cmd
+def version(app, cmd, line, word)
+  if cmd
     lines = `#{cmd} 2>&1`.split($/)
-    return "NA" if lines[0] =~ / not /
-    lines[line]
+    lines[0] =~ / not / ? 
+      "NA" : 
+      lines[line].split[word].gsub(/(v|"|\(\d\)-release|\(|\))/, "").split("/")[-1]
   else
+    app = app == "Chrome" ? "Google Chrome" : app
     plist = File.read("/Applications/#{app}.app/Contents/Info.plist")
-    if plist[0] == "{" || plist[0] == 123 # 1.8.7
+    if plist[0] == "{"
       plist.split("CFBundleShortVersionString")[1].split('"')[1]
     else
       values = plist.split("<").map{|s| s.split(">")[1]}.to_enum
@@ -16,44 +18,51 @@ def version(app, cmd, line, word, word2)
       values.next
     end
   end
-  words = [word]
-  words.push word2 if word2
-  words.map { |word| string.split[word].gsub /(v|"|\(\d\)-release|\(|\)|,)/, "" }.join "-p"
 rescue
   "NA"
 end
 
-def putv(app, cmd=nil, line=0, word=-1, word2=nil)
-  version = version(app.gsub("|",""), cmd, line, word, word2)
+def putv(app, cmd=nil, line=0, word=-1)
+  version = version(app, cmd, line, word)
   wikiized = ARGV[0] == "w"
   if wikiized && app == "Ruby" then
-    parts = version.split("-p")
-    version = "[[#{parts[0]}]]-p#{parts[1]}" if parts.size == 2
+    parts = version.split("p")
+    version = "[[#{parts[0]}]]p#{parts[1]}" if parts.size == 2
   end
-  segments = app.split("|")
-  app = segments[1 - segments.size]
   app += "|MacOSX" if wikiized && app == "OSX"
   app = "[[#{app}]]" if wikiized
   puts "#{app}: #{version}"
 end
 
+# puts ENV["PWD"]
+# putv "Bash", "echo $BASH_VERSION" - don't know how to set Ruby's default shell
 putv "OSX", "sw_vers", 1
-putv "Xcode", "xcodebuild -version"
-putv "GCC", "gcc --version", 0, 2
 putv "Bash", "bash -c 'echo $BASH_VERSION'"
-putv "Ruby", "ruby -v", 0, 1, 4
+putv "Xcode", "xcodebuild -version"
+putv "GCC", "gcc --version", 0, 3
 putv "Homebrew", "brew -v"
+putv "Apache", "httpd -v", 0, 2
+putv "Safari"
+putv "Chrome"
+putv "Firefox", "firefox --version", 0, 2
+putv "SQLite", "sqlite3 -version", 0, 0
+putv "MySQL", "mysql --version", 0, 2
+putv "Postgres", "psql --version"
+putv "pgAdmin3"
 putv "Git", "git --version"
-putv "MongoDB", "mongo --eval 'db.version()'", 2
+putv "SourceTree"
+putv "DeltaWalker"
+putv "TextMate"
+putv "Java", "java -version"
+putv "Python", "python -V"
 putv "Node", "node -v"
 putv "Npm", "npm -v"
 putv "CoffeeScript", "coffee -v"
-putv "SourceTree"
-putv "TextMate"
-putv "|Sublime Text| 2", nil, 0, 1
-putv "Java", "java -version"
-putv "Python", "python -V"
-putv "Google |Chrome"
-putv "Firefox"
-putv "Safari"
+putv "Rbenv", "rbenv -v"
+putv "Ruby", "ruby -v", 0, 1
+putv "Rails", "rails -v"
+putv "Gem", "gem -v"
+putv "Bundler", "gem list bundler | grep '^bundler '"
+# putv "Bundler-r", "gem search bundler -r | grep '^bundler '", 0, 1
+putv "Pry", "pry -v", 0, 2
 puts `brew --config` if ARGV[0] == "h"
