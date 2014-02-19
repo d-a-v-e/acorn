@@ -1,4 +1,4 @@
-# Setting up Mac OS X for development
+### Setting up Mac OS X for development
 
 First install [Homebrew](http://brew.sh/), as explained there. Then in OS X Terminal:
 

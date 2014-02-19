@@ -38,6 +38,8 @@ Output on my MacBook Pro on 18th Feb 2014 is
     Bundler: 1.5.2
     Pry: 0.9.12.6
 
+You don't have to come up with exactly the same numbers but [setup](https://github.com/BiotaLabs/acorn/blob/master/setup.md) should help you get going.
+
 In the env directory there's an example of how to set up ~/.bash_profile and ~/.bashrc to give helpful, coloured prompts in the Mac Terminal, showing the current directory, current Git branch, whether there are outstanding changes to commit and whether there are commits to push to or pull from GitHub (or any other remote repository). Copy the relevant lines into your existing startup files. 
 
 One is told that .bashrc is for general environment variables for any process forked from Bash, .bash_profile for terminal-related stuff, including aliases. I've given some examples of aliases I use with Git but these are very much a matter of taste. Copy anything you fancy but the following lines are essential to get the fancy prompt working without breaking Terminal's nice habit of taking you to the same directory as current on hitting apple-t (a feature that is broken by many open source attempts to set the prompt).
