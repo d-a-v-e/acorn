@@ -8,6 +8,7 @@ def version(app, cmd, line, word)
       lines[line].split[word].gsub(/(v|"|\(\d\)-release|\(|\))/, "").split("/")[-1]
   else
     app = app == "Chrome" ? "Google Chrome" : app
+    app = app == "Sublime Text" ? "Sublime Text 2" : app
     plist = File.read("/Applications/#{app}.app/Contents/Info.plist")
     if plist[0] == "{"
       plist.split("CFBundleShortVersionString")[1].split('"')[1]
@@ -53,6 +54,7 @@ putv "Git", "git --version"
 putv "SourceTree"
 putv "DeltaWalker"
 putv "TextMate"
+putv "Sublime Text", nil, 0, 1
 putv "Java", "java -version"
 putv "Python", "python -V"
 putv "Node", "node -v"

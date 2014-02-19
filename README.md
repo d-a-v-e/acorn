@@ -25,6 +25,7 @@ Output on my MacBook Pro on 18th Feb 2014 is
     SourceTree: 1.8.1
     DeltaWalker: 1.9.9.5
     TextMate: 2.0-alpha.9503
+    Sublime Text: NA
     Java: 1.7.0_25
     Python: 2.7.6
     Node: 0.10.25

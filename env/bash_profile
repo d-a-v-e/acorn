@@ -8,7 +8,7 @@ alias gch='git checkout'
 alias rebash='~/.bash_profile'
 
 . ~/.bashrc
-. $env/bash_prompt.sh
+. $acorn/env/bash_prompt.sh
 # from /etc/bashrc
 shopt -s checkwinsize
 if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
