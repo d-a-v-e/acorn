@@ -30,7 +30,6 @@ def putv(app, cmd=nil, line=0, word=-1)
     parts = version.split("p")
     version = "[[#{parts[0]}]]p#{parts[1]}" if parts.size == 2
   end
-  app += "|MacOSX" if wikiized && app == "OSX"
   app = "[[#{app}]]" if wikiized
   puts "#{app}: #{version}"
 end
@@ -62,9 +61,10 @@ putv "Npm", "npm -v"
 putv "CoffeeScript", "coffee -v"
 putv "Rbenv", "rbenv -v"
 putv "Ruby", "ruby -v", 0, 1
-putv "Rails", "rails -v"
 putv "Gem", "gem -v"
 putv "Bundler", "gem list bundler | grep '^bundler '"
-# putv "Bundler-r", "gem search bundler -r | grep '^bundler '", 0, 1
 putv "Pry", "pry -v", 0, 2
+putv "Rails", "rails -v"
+
+# putv "Bundler-r", "gem search bundler -r | grep '^bundler '", 0, 1
 puts `brew --config` if ARGV[0] == "h"
