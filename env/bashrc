@@ -3,4 +3,4 @@
 export dev=~/dev # wherever you cloned this repo
 export acorn=$dev/acorn # the repo itself
 export PATH=$acorn/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export EDITOR='mate -w' # set to Sublime Text or whatever required
+export EDITOR='subl' 

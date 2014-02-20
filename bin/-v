@@ -51,7 +51,6 @@ putv "Postgres", "psql --version"
 putv "pgAdmin3"
 putv "Git", "git --version"
 putv "SourceTree"
-putv "DeltaWalker"
 putv "TextMate"
 putv "Sublime Text", nil, 0, 1
 putv "Java", "java -version"
