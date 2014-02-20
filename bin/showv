@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+versions = YAML.load_file("results/#{ARGV[0]}.yaml")
+versions.each do |key, value|
+  puts "#{key}: #{value}"
+end
